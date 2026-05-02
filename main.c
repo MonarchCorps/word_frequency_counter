@@ -49,7 +49,11 @@ int main(void)
     int capacity = 100;
     int count = 0;
     WordNode** flat = malloc(capacity * sizeof(WordNode*));
-    if (flat == NULL) { printf("Out of memory\n"); return 1; }
+    if (flat == NULL)
+    {
+        printf("Out of memory\n");
+        return 1;
+    }
 
     for (int i = 0; i < 10007; i++)
     {
@@ -61,7 +65,12 @@ int main(void)
             {
                 capacity *= 2;
                 WordNode** temp = realloc(flat, capacity * sizeof(WordNode*));
-                if (temp == NULL) { printf("Out of memory\n"); free(flat); return 1; }
+                if (temp == NULL)
+                {
+                    printf("Out of memory\n");
+                    free(flat);
+                    return 1;
+                }
                 flat = temp;
             }
             flat[count++] = node;
@@ -159,5 +168,5 @@ void insert(WordNode* map[], const char* word)
     strcpy(newNode->word, word);
     newNode->count = 1;
     newNode->next = map[index]; // attach to front of chain
-    map[index] = newNode;       // update map to point to new node
+    map[index] = newNode; // update map to point to new node
 }
